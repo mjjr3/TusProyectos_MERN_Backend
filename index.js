@@ -19,8 +19,7 @@ dotenv.config();
 const whiteList = [process.env.FRONT_END_URL]
 const corsOptions = {
     origin:(origin,callback)=>{
-        if(whiteList.includes(origin)){
-            console.log(origin)
+        if(whiteList.includes(origin)){           
             callback(null,true);
         }else{
             callback(new Error('Error de cors'));

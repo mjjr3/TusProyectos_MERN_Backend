@@ -4,11 +4,11 @@ export const emailRegistro = async (datos) => {
    const {nombre,email,token} = datos;
 
    const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
     auth: {
-      user: "4597a8ded8e77a",
-      pass: "7d1c23407ff224"
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
@@ -29,14 +29,14 @@ export const emailOlvidePassword = async (datos) => {
   const {nombre,email,token} = datos;
 
 
-  //TODO: mover todas las varibles en duro a variables de entorno
+
 
   const transport = nodemailer.createTransport({
-   host: "smtp.mailtrap.io",
-   port: 2525,
+   host: process.env.EMAIL_HOST,
+   port: process.env.EMAIL_PORT,
    auth: {
-     user: "4597a8ded8e77a",
-     pass: "7d1c23407ff224"
+     user: process.env.EMAIL_USER,
+     pass: process.env.EMAIL_PASS
    }
  });
 
@@ -48,7 +48,7 @@ export const emailOlvidePassword = async (datos) => {
    html:`<p>Hola: ${nombre} has solicitado reestablecer tu contraseña en TusProyectos.com</p>
    <p>Tu cuenta ya está casi lista, solo debes comprobarla en el siguiente enlace:</p>
 
-   <a href="${process.env.FRONT_END_URL}/olvide-password/${token}">Comprobar Cuenta</a>
+   <a href="${process.env.FRONT_END_URL}/olvide-password/${token}">Reestablece tu contraseña</a>
    <p>Si tu no solicitaste reestablecer tu contraseña, puedes ignorar este correo</p>
    `
  })
